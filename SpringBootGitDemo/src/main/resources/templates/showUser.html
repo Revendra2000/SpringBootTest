@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Show User Page ${Firstname}</h2>
+
+<a href="/GitDemo/showUser">show user</a>
+
+ <span th:text="${user.Fname}"/>
+ 
+ <span th:text="${user.Lname}"/>
+ 
+  <span th:text="${session}"/>
+ 
+ 
+</body>
+</html>
