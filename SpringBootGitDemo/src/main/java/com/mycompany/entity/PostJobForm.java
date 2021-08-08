@@ -29,5 +29,91 @@ public class PostJobForm {
 	 private String workDescription;
 	 private String estimatedCost;
 	 private Date lastDate ;
-	 private String jobType ;  
+	 private String jobType ;
+	 
+	 
+	 
+	public PostJobForm() {
+	}
+
+
+	public PostJobForm(int categoryId, String workState, String workCity, String workPincode, String workArea,
+			String workDescription, String estimatedCost, Date lastDate, String jobType) {
+		super();
+		this.categoryId = categoryId;
+		this.workState = workState;
+		this.workCity = workCity;
+		this.workPincode = workPincode;
+		this.workArea = workArea;
+		this.workDescription = workDescription;
+		this.estimatedCost = estimatedCost;
+		this.lastDate = lastDate;
+		this.jobType = jobType;
+	}
+	
+	
+	public int getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+	public String getWorkState() {
+		return workState;
+	}
+	public void setWorkState(String workState) {
+		this.workState = workState;
+	}
+	public String getWorkCity() {
+		return workCity;
+	}
+	public void setWorkCity(String workCity) {
+		this.workCity = workCity;
+	}
+	public String getWorkPincode() {
+		return workPincode;
+	}
+	public void setWorkPincode(String workPincode) {
+		this.workPincode = workPincode;
+	}
+	public String getWorkArea() {
+		return workArea;
+	}
+	public void setWorkArea(String workArea) {
+		this.workArea = workArea;
+	}
+	public String getWorkDescription() {
+		return workDescription;
+	}
+	public void setWorkDescription(String workDescription) {
+		this.workDescription = workDescription;
+	}
+	public String getEstimatedCost() {
+		return estimatedCost;
+	}
+	public void setEstimatedCost(String estimatedCost) {
+		this.estimatedCost = estimatedCost;
+	}
+	public Date getLastDate() {
+		return lastDate;
+	}
+	public void setLastDate(Date lastDate) {
+		this.lastDate = lastDate;
+	}
+	public String getJobType() {
+		return jobType;
+	}
+	public void setJobType(String jobType) {
+		this.jobType = jobType;
+	}
+
+
+	@Override
+	public String toString() {
+		return "PostJobForm [categoryId=" + categoryId + ", workState=" + workState + ", workCity=" + workCity
+				+ ", workPincode=" + workPincode + ", workArea=" + workArea + ", workDescription=" + workDescription
+				+ ", estimatedCost=" + estimatedCost + ", lastDate=" + lastDate + ", jobType=" + jobType + "]";
+	}  
+	 
+	 //th:field="*{workCity}"
 }

@@ -41,6 +41,8 @@
 	      <optional>true</optional>
    		</dependency>
    		
+   		
+   		
    		<!-- For using html for front end -->
    		<dependency> 
     		<groupId>org.springframework.boot</groupId> 
