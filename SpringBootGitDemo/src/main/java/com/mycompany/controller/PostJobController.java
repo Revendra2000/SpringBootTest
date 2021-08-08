@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -121,7 +123,7 @@ public class PostJobController {
 		
 		
 		
-		m.addAttribute("user",new PostJobForm());
+		m.addAttribute("postJobForm",new PostJobForm());
 		m.addAttribute("categoriesList",categoriesList);
 		m.addAttribute("statesList",statesList);
 		
@@ -129,8 +131,10 @@ public class PostJobController {
 	}
 	
 	@PostMapping("/postJob")
-	public String processPostJob(@ModelAttribute PostJobForm postJobForm,Model m,HttpServletRequest request) {
+	public String processPostJob(@Valid @ModelAttribute("postJobForm") PostJobForm postJobForm,Model m,HttpServletRequest request,BindingResult result) {
 	
+		if(result.hasErrors())
+			return "error";
 		System.out.println("In process Post job");
 		HttpSession session=request.getSession();
 		String userId=(String) session.getAttribute("userId");
@@ -140,8 +144,8 @@ public class PostJobController {
 //			System.out.println("User not logged in");
 //			return "redirect:/AccessDenined";
 //		}
-		//m.addAttribute("PostJobForm",new PostJobForm());
-		System.err.println(m.getAttribute("PostJobForm"));
-		return "redirect:/successfull";
+		m.addAttribute("PostJobForm",postJobForm);
+		System.out.println(postJobForm);
+		return "show_the_posted_job";
 	}
 }

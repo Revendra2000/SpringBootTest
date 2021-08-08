@@ -1,6 +1,8 @@
 package com.mycompany.entity;
 
-import java.util.Date;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class PostJobForm {
 
@@ -20,16 +22,25 @@ public class PostJobForm {
 //	 job_assigned_to : String Varchar2(12) (aadhar number of worker FK(users Table))
 	
 	
-	
+	@NotNull
 	 private int categoryId ;
+	
+	@NotBlank
 	 private String workState;
-	 private String workCity;
-	 private String workPincode;
-	 private String workArea;
-	 private String workDescription;
-	 private String estimatedCost;
-	 private Date lastDate ;
-	 private String jobType ;
+	@Size(min=5)
+	private String workCity;
+	@NotBlank 
+	private String workPincode;
+	@NotBlank 
+	private String workArea;
+	@NotBlank 
+	private String workDescription;
+	@NotBlank 
+	private String estimatedCost;
+	@NotBlank
+	private String lastDate ;
+	@NotBlank 
+	private String jobType ;
 	 
 	 
 	 
@@ -38,7 +49,7 @@ public class PostJobForm {
 
 
 	public PostJobForm(int categoryId, String workState, String workCity, String workPincode, String workArea,
-			String workDescription, String estimatedCost, Date lastDate, String jobType) {
+			String workDescription, String estimatedCost, String lastDate, String jobType) {
 		super();
 		this.categoryId = categoryId;
 		this.workState = workState;
@@ -94,10 +105,10 @@ public class PostJobForm {
 	public void setEstimatedCost(String estimatedCost) {
 		this.estimatedCost = estimatedCost;
 	}
-	public Date getLastDate() {
+	public String getLastDate() {
 		return lastDate;
 	}
-	public void setLastDate(Date lastDate) {
+	public void setLastDate(String lastDate) {
 		this.lastDate = lastDate;
 	}
 	public String getJobType() {

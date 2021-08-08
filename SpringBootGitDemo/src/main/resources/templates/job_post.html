@@ -183,7 +183,7 @@
                                     </div>
                                     <div class="card-body card-block">
                                     
-                                        <form action="#" th:action="@{/postJob}" th:object="${PostJobForm}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="#" th:action="@{/postJob}" th:object="${postJobForm}" method="post" enctype="multipart/form-data" class="form-horizontal">
                                         
                                         
                                         
@@ -197,6 +197,7 @@
                                                         <option value="null">Please select</option>
                                                         <option th:each="category : ${categoriesList}" th:value=1 th:text="${category}" ></option>
                                                     </select>
+                                                    <
                                                 </div>
           
                                             </div>
@@ -206,7 +207,7 @@
                                                     <label for="textarea-input" class=" form-control-label">Work Description</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <textarea name="textarea-input" id="textarea-input" rows="6" placeholder="Content..." class="form-control"></textarea>
+                                                    <textarea name="workDescription" id="workDescription" rows="6" placeholder="Content..." class="form-control"></textarea>
                                                 </div>
                                             </div>
                                             
@@ -226,7 +227,7 @@
                                                     <label for="select" class=" form-control-label">Select State</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <select name="select" id="select" class="form-control">
+                                                    <select name="workState" id="workState" class="form-control">
                                                         <option value="null">Please select work State</option>
                                                         <option th:each="state : ${statesList}" th:value="${state}" th:text="${state}" ></option>
                            							</select>
@@ -238,7 +239,7 @@
                                                     <label for="text-input" class=" form-control-label">Work City</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="text-input"  name="text-input" placeholder="Work City" class="form-control">
+                                                    <input type="text" id="workcity"  name="workCity" placeholder="Work City" class="form-control">
                                                     <small class="form-text text-muted">Please enter Work City name</small>
                                                 </div>
                                             </div>
@@ -247,7 +248,7 @@
                                                     <label for="text-input" class=" form-control-label">Pincode</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="text-input" name="text-input" placeholder="Pincode" class="form-control">
+                                                    <input type="text" id="workPincode" name="workPincode" placeholder="Pincode" class="form-control">
                                                     <small class="form-text text-muted">Please enter Pincode eg.413005</small>
                                                 </div>
                                             </div>
@@ -256,7 +257,7 @@
                                                     <label for="text-input" class=" form-control-label">Work Area</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="text-input" name="text-input" placeholder="Work Area" class="form-control">
+                                                    <input type="text" id="workArea" name="workArea" placeholder="Work Area" class="form-control">
                                                     <small class="form-text text-muted">Please enter Work Area name</small>
                                                 </div>
                                             </div>
@@ -265,7 +266,7 @@
                                                     <label for="text-input" class=" form-control-label">Cost</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="text-input" name="text-input" placeholder="Estimated Cost" class="form-control">
+                                                    <input type="text" id="estimatedCost" name="estimatedCost" placeholder="Estimated Cost" class="form-control">
                                                     <small class="form-text text-muted">Please enter Estimated Cost</small>
                                                 </div>
                                             </div>
@@ -274,7 +275,7 @@
                                                     <label for="select" class=" form-control-label">Select Job Type</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <select name="select" id="select" class="form-control">
+                                                    <select name="jobType" id="jobType" class="form-control">
                                                         <option value="0">Please select</option>
                                                         <option value="1">Monthly</option>
                                                         <option value="2">One Day</option>
@@ -292,19 +293,22 @@
                                                     <label for="text-input" class=" form-control-label">Last Date</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="date" id="text-input" name="text-input" placeholder="Text" class="form-control">
+                                                    <input type="date" id="lastDate" name="lastDate"  placeholder="Text" class="form-control">
                                                     <small class="form-text text-muted">Please enter Deadline of Job</small>
                                                 </div>
                                             </div>
                                           
-                                        </form>
-                                    </div>
+                                       
+                                   
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary btn-sm">
                                             <i class="fa fa-dot-circle-o"></i> Submit
                                         </button>
                                 
                                     </div>
+                                    </form>
+                                     </div>
+                                    
                                 </div>
                               
         <!-- END PAGE CONTAINER-->
