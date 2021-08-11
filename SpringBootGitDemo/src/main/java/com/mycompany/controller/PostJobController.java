@@ -1,20 +1,28 @@
 package com.mycompany.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mycompany.entity.AllPostedJobDetails;
+import com.mycompany.entity.JobDetails;
 import com.mycompany.entity.PostJobForm;
+import com.mycompany.service.CategoryService;
+import com.mycompany.service.PostJobService;
 
 @Controller
 public class PostJobController {
@@ -53,88 +61,89 @@ public class PostJobController {
 //	}
 	
 	
+	@Autowired
+	private PostJobService postJobService;
 	
-	@GetMapping("/postJob")
+	@Autowired
+	private CategoryService categoryService;
+	
+	
+	
+	@GetMapping("/job_post")
 	public String showPostJob(Model m,HttpServletRequest request) {
-	
+		
 		System.out.println("In show post job");
+		
 		HttpSession session=request.getSession();
 		String userId=(String) session.getAttribute("userId");
 		String userType=(String) session.getAttribute("userType");
+		
 //		if(userId==null || userType!="Normal")
 //		{
 //			System.out.println("User not logged in");
 //			return "redirect:/AccessDenined";
 //		}
+		
+		//Fetching the categories from database
+		//Job Type Dropdown
+	
 		//Adding data for categories dropdown
 		
-		List<String> categoriesList=new ArrayList<>();
-		categoriesList.add("Maid");
-		categoriesList.add("Cook");
-		categoriesList.add("Watchman");
-		categoriesList.add("Carpenter");
-		categoriesList.add("Driver");
-		categoriesList.add("Caretaker");
-		categoriesList.add("Nanny");
-		categoriesList.add("Electrician");
-		categoriesList.add("Plumber");
-		categoriesList.add("Sweeper");
-		categoriesList.add("Gardener");
-		categoriesList.add("Washerman");
-		categoriesList.add("Car Mechanic");
-		categoriesList.add("Bike Mechanic");
-		categoriesList.add("Painter");
-		categoriesList.add("Mason");
-		categoriesList.add("Sanitation Worker");
-		categoriesList.add("Home Tutor");
+//		List<String> categoriesList=new ArrayList<>();
+//		categoriesList.add("Maid");
+//		categoriesList.add("Cook");
+//		categoriesList.add("Watchman");
+//		categoriesList.add("Carpenter");
+//		categoriesList.add("Driver");
+//		categoriesList.add("Caretaker");
+//		categoriesList.add("Nanny");
+//		categoriesList.add("Electrician");
+//		categoriesList.add("Plumber");
+//		categoriesList.add("Sweeper");
+//		categoriesList.add("Gardener");
+//		categoriesList.add("Washerman");
+//		categoriesList.add("Car Mechanic");
+//		categoriesList.add("Bike Mechanic");
+//		categoriesList.add("Painter");
+//		categoriesList.add("Mason");
+//		categoriesList.add("Sanitation Worker");
+//		categoriesList.add("Home Tutor");
+//		
+
+				
+		//categoryService.addCategory(new Category("Maid"));
+//		categoryService.addCategory(new Category("Painter"));
+//		categoryService.addCategory(new Category("Cook"));
+//		categoryService.addCategory(new Category("Carpenter"));
+//		categoryService.addCategory(new Category("Electrician"));
 		
-		
-		List<String> statesList=new ArrayList<>();
-		statesList.add("Andhra Pradesh");
-		statesList.add("Arunachal Pradesh");
-		statesList.add("Assam");
-		statesList.add("Bihar");
-		statesList.add("Chhattisgarh");
-		statesList.add("Goa");
-		statesList.add("Gujarat");
-		statesList.add("Haryana");
-		statesList.add("Himachal Pradesh");
-		statesList.add("Jammu and Kashmir");
-		statesList.add("Jharkhand");
-		statesList.add("Karnataka");
-		statesList.add("Kerala");
-		statesList.add("Madhya Pradesh");
-		statesList.add("Maharashtra");
-		statesList.add("Manipur");
-		statesList.add("Meghalaya");
-		statesList.add("Mizoram");
-		statesList.add("Nagaland");
-		statesList.add("Odisha");
-		statesList.add("Pumjab");
-		statesList.add("Rajasthan");
-		statesList.add("Sikkim");
-		statesList.add("Tamil Nadu");
-		statesList.add("Telangana");
-		statesList.add("Tripura");
-		statesList.add("Uttar Pradesh");
-		statesList.add("Uttarakhand");
-		statesList.add("West Bengal");
-		
-		
-		
+		//categoryService.addCategory(new Category("Washerman"));
+	
 		
 		m.addAttribute("postJobForm",new PostJobForm());
-		m.addAttribute("categoriesList",categoriesList);
-		m.addAttribute("statesList",statesList);
+		
+		m.addAttribute("categoriesList",categoryService.getAllCategories());
+		m.addAttribute("statesList",categoryService.getAllStates());
+		m.addAttribute("jobTypeList",categoryService.getAllJobType());
 		
 		return "job_post";
 	}
 	
-	@PostMapping("/postJob")
-	public String processPostJob(@Valid @ModelAttribute("postJobForm") PostJobForm postJobForm,Model m,HttpServletRequest request,BindingResult result) {
+	@PostMapping("/job_post")
+	public String processPostJob(@Valid @ModelAttribute("postJobForm") PostJobForm postJobForm,BindingResult result,Model m,HttpServletRequest request) {
 	
+		System.out.println("In process Post job");
+		System.out.println(postJobForm);
+		
 		if(result.hasErrors())
-			return "error";
+		{
+			m.addAttribute("categoriesList",categoryService.getAllCategories());
+			m.addAttribute("statesList",categoryService.getAllStates());
+			m.addAttribute("jobTypeList",categoryService.getAllJobType());
+			
+			return "job_post";
+		}
+		
 		System.out.println("In process Post job");
 		HttpSession session=request.getSession();
 		String userId=(String) session.getAttribute("userId");
@@ -144,8 +153,40 @@ public class PostJobController {
 //			System.out.println("User not logged in");
 //			return "redirect:/AccessDenined";
 //		}
-		m.addAttribute("PostJobForm",postJobForm);
+		String aadharNo="123456789123";
+		JobDetails jobDetails=postJobService.populateJobEntity(postJobForm, aadharNo);
+		
+		postJobService.addJobDetails(jobDetails);
 		System.out.println(postJobForm);
-		return "show_the_posted_job";
+		//m.addAttribute("JobDetails",jobDetails);
+		//service.addJob(new Job());
+		//return "show_the_posted_job";
+		return "redirect:/posted_job_list";
+	}
+	
+	
+	@GetMapping("/posted_job_list")
+	public String show_posted_job_list(Model m) {
+		System.out.println("in all posted job details controller");
+		List<JobDetails> jobDetailsList =postJobService.getAllPostedJobs("123456789123");
+		List<AllPostedJobDetails> allPostedJobs=postJobService.processAllPostedJobs(jobDetailsList);
+		
+		System.out.println("allPostedJobs");
+		//StringBuilder sb=new StringBuilder();
+
+		
+		m.addAttribute("allPostedJobList",allPostedJobs);
+		
+		return "posted_job_list";	
+	}
+	
+	@GetMapping("/job_applied_list")
+	public String job_applied_list(@RequestParam int jobId,Model m) {
+		System.out.println("-------------------------- job applied list "+jobId);
+		System.out.println(postJobService.getDetailsOfAllAppliers(jobId));
+		m.addAttribute("userDetails",postJobService.getDetailsOfAllAppliers(jobId));
+		return "job_applied_list";
 	}
 }
+	
+

@@ -151,90 +151,24 @@
                                     <table class="table table-borderless table-data3">
                                         <thead>
                                             <tr>
-                                                <th>Aadar No.</th>
-                                                <th>Name</th>
+                                            	<th>Job ID</th>
+                                                <th>Full Name</th>
+                                                <th>Gender</th>
+                                                <th>Aadhar No.</th>
                                                 <th>Address</th>
                                                 <th>Mobile No.</th>
-                                                <th>Skills</th>
-                                                <th>Date</th>
-                                                
-
-                                                
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        
+                                            <tr th:each = "job : ${userDetails} ">
+                                                <td th:text = "${userDetails.getJobId)()}"></td>
+                                                <td th:text = "${userDetails.getFullName()}"></td>
+                                                <td th:text = "${userDetails.getGender()}"></td>
+                                                <td th:text = "${userDetails.getAadharNo()}"></td>
+                                                <td th:text = "${userDetails.getAddress()}"></td>
+                                                <td th:text = "${userDetails.getMobileNo()}"></td>
                                             <tr>
-                                                <td>2345 4567 6789</td>
-                                                <td>full name</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>9225784866</td>
-                                                <td>skills add karo</td>
-                                                <td>15/4/2021</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>2345 4567 6789</td>
-                                                <td>full name</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>9225784866</td>
-                                                <td>skills add karo</td>
-                                                <td>15/4/2021</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>2345 4567 6789</td>
-                                                <td>full name</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>9225784866</td>
-                                                <td>skills add karo</td>
-                                                <td>15/4/2021</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>2345 4567 6789</td>
-                                                <td>full name</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>9225784866</td>
-                                                <td>skills add karo</td>
-                                                <td>15/4/2021</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>2345 4567 6789</td>
-                                                <td>full name</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>9225784866</td>
-                                                <td>skills add karo</td>
-                                                <td>15/4/2021</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>2345 4567 6789</td>
-                                                <td>full name</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>9225784866</td>
-                                                <td>skills add karo</td>
-                                                <td>15/4/2021</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>2345 4567 6789</td>
-                                                <td>full name</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>9225784866</td>
-                                                <td>skills add karo</td>
-                                                <td>15/4/2021</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>2345 4567 6789</td>
-                                                <td>full name</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>9225784866</td>
-                                                <td>skills add karo</td>
-                                                <td>15/4/2021</td>
-                                                
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

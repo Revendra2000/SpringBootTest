@@ -1,7 +1,12 @@
 package com.mycompany.entity;
 
+import javax.validation.constraints.NotBlank;
+
 public class User {
+	
+	@NotBlank(message = "Please provide fname")
 	String fname;
+	@NotBlank(message = "Please provide lname")
 	String lname;
 	
 	@Override

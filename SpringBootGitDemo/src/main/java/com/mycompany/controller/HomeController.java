@@ -27,11 +27,11 @@ public class HomeController {
 //		return "homepage";
 //	}
 //	
-//	@RequestMapping(value="/dashboard",method=RequestMethod.GET)
-//	public String dashboard() {
-//		return "dashboard";
-//	}
-//	
+	@RequestMapping(value="/dashboard",method=RequestMethod.GET)
+	public String dashboard() {
+		return "dashboard";
+	}
+	
 //	@RequestMapping(value="/job_post",method=RequestMethod.GET)
 //	public String job_post() {
 //		return "job_post";
@@ -42,10 +42,7 @@ public class HomeController {
 //		return "posted_job_list";
 //	}
 //	
-//	@RequestMapping(value="/job_applied_list",method=RequestMethod.GET)
-//	public String job_applied_list() {
-//		return "job_applied_list";
-//	}
+
 //	
 //	@RequestMapping(value="/profile",method=RequestMethod.GET)
 //	public String profile() {

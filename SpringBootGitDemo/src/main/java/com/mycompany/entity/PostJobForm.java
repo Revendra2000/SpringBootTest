@@ -1,45 +1,40 @@
 package com.mycompany.entity;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class PostJobForm {
 
-//	 jobId : autogenreated(number) PrimaryKey
-//	 aadhar_no : String Varchar2(12) (Foreign Key references to users table) // who posted job
-//	 category_id : number (Foreign Key references to categories table) //ui dropdown
-//	 work_state : String Varchar2(30) //ui dropdown
-//	 work_city : String Varchar2(30) [cities only] //ui text
-//	 work_pincode : String Varchar2(6)  //ui text
-//	 work_area : String Varchar2(50)  //ui text
-//	 work_description : String Varchar2(100)  //ui text
-//	 isActive : boolean(true/false)
-//	 estimated_cost : number(7)  //ui text
-//	 date_of_job_post : Date(current date automatically filled)
-//	 last_date : Date  //ui text calendar
-//	 job_type : String Varchar2(30) (monthly,dailywage)  //ui dropdown
-//	 job_assigned_to : String Varchar2(12) (aadhar number of worker FK(users Table))
+public class PostJobForm {	
 	
+	@NotBlank(message = "Please select the category") //message = "Please select the work category")
+	private String categoryId ;
 	
-	@NotNull
-	 private int categoryId ;
-	
-	@NotBlank
+	@NotBlank(message="Please select the work State")
 	 private String workState;
-	@Size(min=5)
+	
+	@NotBlank(message = "Please enter work city name" )
 	private String workCity;
-	@NotBlank 
-	private String workPincode;
-	@NotBlank 
+	
+	@Min(value=100000, message = "Please enter valid pincode" )
+	@Max(value=999999, message = "Please enter valid pincode" )
+	private int workPincode;
+	
+	@NotBlank(message="Please enter the Work Area")
 	private String workArea;
-	@NotBlank 
+	
+	@Size(min=15, max = 900,message = "Please enter a work description of 15 letters or more" )
 	private String workDescription;
-	@NotBlank 
-	private String estimatedCost;
-	@NotBlank
+	
+	@Min(value = 1, message = "Please enter the cost more than or equal to 100")
+	private int estimatedCost;
+	
+	@NotBlank(message="Please enter the deadline")
 	private String lastDate ;
-	@NotBlank 
+	
+	@NotBlank(message = "Please choose job type" )
 	private String jobType ;
 	 
 	 
@@ -48,8 +43,8 @@ public class PostJobForm {
 	}
 
 
-	public PostJobForm(int categoryId, String workState, String workCity, String workPincode, String workArea,
-			String workDescription, String estimatedCost, String lastDate, String jobType) {
+	public PostJobForm(String categoryId, String workState, String workCity, int workPincode, String workArea,
+			String workDescription, int estimatedCost, String lastDate, String jobType) {
 		super();
 		this.categoryId = categoryId;
 		this.workState = workState;
@@ -63,10 +58,10 @@ public class PostJobForm {
 	}
 	
 	
-	public int getCategoryId() {
+	public String getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
 	public String getWorkState() {
@@ -81,10 +76,10 @@ public class PostJobForm {
 	public void setWorkCity(String workCity) {
 		this.workCity = workCity;
 	}
-	public String getWorkPincode() {
+	public int getWorkPincode() {
 		return workPincode;
 	}
-	public void setWorkPincode(String workPincode) {
+	public void setWorkPincode(int workPincode) {
 		this.workPincode = workPincode;
 	}
 	public String getWorkArea() {
@@ -99,10 +94,10 @@ public class PostJobForm {
 	public void setWorkDescription(String workDescription) {
 		this.workDescription = workDescription;
 	}
-	public String getEstimatedCost() {
+	public int getEstimatedCost() {
 		return estimatedCost;
 	}
-	public void setEstimatedCost(String estimatedCost) {
+	public void setEstimatedCost(int estimatedCost) {
 		this.estimatedCost = estimatedCost;
 	}
 	public String getLastDate() {

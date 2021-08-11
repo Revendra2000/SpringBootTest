@@ -182,55 +182,40 @@
                     <div class="container-fluid">
 						<div class="row m-t-30">
                             <div class="col-md-12">
+                            
                                 <!-- DATA TABLE-->
                                 <div class="table-responsive m-b-40">
                                     <table class="table table-borderless table-data3">
                                         <thead>
                                             <tr>
+                                             	<th>Job Id</th>
                                                 <th>Post Date</th>
                                                 <th>Category Name</th>
                                                 <th>Job Type</th>
-                                                <th>Work Address</th>
+                                                <th>Work Areas</th>
                                                 <th>Work Description</th>
                                                 <th>Status</th>
-                                                <th>Price</th>
                                                 <th>Last Date</th>
                                                 <th>Applied List</th>
-                                                <th>Opration</th>
-
-                                                
+                                                <!-- <th>Opration</th> -->  
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>Painter</td>
-                                                <td>Mobile</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="denied">Processed</td>
-                                                <td>$999.00</td>
-                                                <td>2018-09-29 05:57</td>
-                                                <td><a th:href="@{job_applied_list}"><button type="submit" class="btn btn-primary btn-sm">
-            		                                <i class="fa fa-eye" aria-hidden="true"></i> show
+                                       
+                                            <tr th:each = "job : ${allPostedJobList} ">
+                                                <td th:text = "${job.getJobId()}"></td>
+                                                <td th:text = "${job.getDateOfPost()}"></td>
+                                                <td th:text = "${job.getCategoryName()}"></td>
+                                                <td th:text = "${job.getWorkArea()}"></td>
+                                                <td th:text = "${job.getWorkDescription()}"></td>
+                                                <td th:text = "${job.getStatus()}"></td>
+                                                <td th:text = "${job.getLastDate()}"></td>
+                                              <!--   <td class="denied">Processed</td> -->
+                                                <td><a th:href="@{/job_applied_list(jobId=${job.getJobId()})}"><button type="submit" class="btn btn-primary btn-sm">
+            		                                <i class="fa fa-eye" aria-hidden="true"></i> All Applicants
 			                                        </button></a></td>
-                                                <td><div style="margin-right: 25px;">
-                                                    <div style="color: #2196f3;"><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></div><div ><a href="#" style="color: red;"><i class="fa fa-trash" aria-hidden="true"></i></a></div></div></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>Painter</td>
-                                                <td>Mobile</td>
-                                                <td>abc xyz pqr</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="denied">Processed</td>
-                                                <td>$999.00</td>
-                                                <td>2018-09-29 05:57</td>
-                                                <td><a th:href="@{job_applied_list}"><button type="submit" class="btn btn-primary btn-sm">
-                                            		<i class="fa fa-eye" aria-hidden="true"></i> show
-                                        			</button></a></td>
-                                                <td><div style="margin-right: 25px;">
-                                                    <div style="color: #2196f3;"><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></div><div ><a href="#" style="color: red;"><i class="fa fa-trash" aria-hidden="true"></i></a></div></div></td>
+                                                <!-- <td><div style="margin-right: 25px;">
+                                                    <div style="color: #2196f3;"><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></div><div ><a href="#" style="color: red;"><i class="fa fa-trash" aria-hidden="true"></i></a></div></div></td> -->
                                             </tr>
                                             
                                         </tbody>
