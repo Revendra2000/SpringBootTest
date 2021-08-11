@@ -182,7 +182,7 @@ public class PostJobController {
 	
 	@GetMapping("/job_applied_list")
 	public String job_applied_list(@RequestParam int jobId,Model m) {
-		System.out.println("-------------------------- job applied list "+jobId);
+		System.out.println("-------------------------- job applied list "+jobId+"-----------------------------------");
 		System.out.println(postJobService.getDetailsOfAllAppliers(jobId));
 		m.addAttribute("userDetails",postJobService.getDetailsOfAllAppliers(jobId));
 		return "job_applied_list";

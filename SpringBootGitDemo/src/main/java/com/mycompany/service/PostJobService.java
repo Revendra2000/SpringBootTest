@@ -120,9 +120,9 @@ public class PostJobService {
 	
 	public List<AppliedUserDetails> getDetailsOfAllAppliers(int jobID)
 	{
-		List<String> usersAadharNo=allAppliedJobService.getAllWhoApplied(jobID);
-		System.out.println("-------JobId "+jobID +" User AadharList "+usersAadharNo);
-		return allAppliedJobService.getDetailsOfAppliedUser(usersAadharNo, String.valueOf(jobID));
+		List<String> usersAadharNoList=allAppliedJobService.getAllWhoApplied(jobID);
+		System.out.println("-------JobId "+jobID +" User AadharList "+usersAadharNoList);
+		return allAppliedJobService.getDetailsOfAppliedUser(usersAadharNoList, String.valueOf(jobID));
 		
 	}
 }

@@ -8,6 +8,7 @@ public class AppliedUserDetails {
 	private String gender;
 	private String mobileNo;
 	private String address;
+	
 	public String getJobId() {
 		return jobId;
 	}

@@ -24,10 +24,10 @@ public class AllAppliedJobService {
 	public List<String> getAllWhoApplied(int jobId)
 	{
 		System.out.println("In get all who applied");
-		List<AllAppliedJob> list= dao.findAllUserAadhar(jobId);
-		System.out.println(list);
+		List<String> list= dao.findAllUserAadhar(jobId);
+		System.out.println("List"+list);
 		//System.out.println(list);
-		return null;
+		return list;
 	}
 	
 	public List<AppliedUserDetails> getDetailsOfAppliedUser(List<String> usersAadharNos,String jobId)
@@ -43,11 +43,13 @@ public class AllAppliedJobService {
 			aud.setAadharNo(aadhar);
 			aud.setAddress(user.getAddress());
 			
+//			System.out.println(user.getGender());
+			
 			if(user.getGender().equalsIgnoreCase("M"))
 				aud.setGender("Male");
 			else
 				aud.setGender("Female");
-			
+//			System.out.println(aud.getGender());
 			aud.setJobId(jobId);
 			
 			aud.setFullName(user.getFirstName()+" "+user.getLastName());
@@ -56,7 +58,7 @@ public class AllAppliedJobService {
 			appliedUserDetailsList.add(aud);
 			
 		}
-		
+		System.out.println("AUD"+appliedUserDetailsList);
 		return appliedUserDetailsList;
 	}
 	

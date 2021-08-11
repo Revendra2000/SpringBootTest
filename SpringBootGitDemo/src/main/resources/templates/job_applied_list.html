@@ -161,13 +161,13 @@
                                         </thead>
                                         <tbody>
                                         
-                                            <tr th:each = "job : ${userDetails} ">
-                                                <td th:text = "${userDetails.getJobId)()}"></td>
-                                                <td th:text = "${userDetails.getFullName()}"></td>
-                                                <td th:text = "${userDetails.getGender()}"></td>
-                                                <td th:text = "${userDetails.getAadharNo()}"></td>
-                                                <td th:text = "${userDetails.getAddress()}"></td>
-                                                <td th:text = "${userDetails.getMobileNo()}"></td>
+                                            <tr th:each = "user : ${userDetails} ">
+                                               	<td th:text = "${user.getJobId()}"></td>
+                                                <td th:text = "${user.getFullName()}"></td>
+                                                <td th:text = "${user.getGender()}"></td>
+                                                <td th:text = "${user.getAadharNo()}"></td>
+                                                <td th:text = "${user.getAddress()}"></td>
+                                                <td th:text = "${user.getMobileNo()}"></td>
                                             <tr>
                                         </tbody>
                                     </table>
