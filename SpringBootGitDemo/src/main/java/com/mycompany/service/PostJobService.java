@@ -125,4 +125,14 @@ public class PostJobService {
 		return allAppliedJobService.getDetailsOfAppliedUser(usersAadharNoList, String.valueOf(jobID));
 		
 	}
+	
+	public int  assignJobToAadharNo(int jobId,String aadharNo)
+	{
+		return dao.setJobAssignedToOfJobId(aadharNo, jobId);
+	}
+	
+	public String getSelectedWorkerAadharNo(int jobId)
+	{
+		return dao.findSelectedWorkerAadharNo(jobId);
+	}
 }

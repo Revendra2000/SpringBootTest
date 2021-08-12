@@ -147,8 +147,9 @@
 						<div class="row m-t-30">
                             <div class="col-md-12">
                                 <!-- DATA TABLE-->
-                                <div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
+                                <div class="table-responsive m-b-40"  >
+                                 <h3 class="text-danger" th:if="${isEmpty}">Till now no one has applied, please wait for any applier</h3>
+                                    <table class="table table-borderless table-data3" th:if="${!isEmpty}">
                                         <thead>
                                             <tr>
                                             	<th>Job ID</th>
@@ -157,10 +158,11 @@
                                                 <th>Aadhar No.</th>
                                                 <th>Address</th>
                                                 <th>Mobile No.</th>
+                                                <th>Select Candidate</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        
+                                        <h3 class="text-danger" th:if="${isEmpty}">Till now no one has applied, please wait for any applier</h3>
                                             <tr th:each = "user : ${userDetails} ">
                                                	<td th:text = "${user.getJobId()}"></td>
                                                 <td th:text = "${user.getFullName()}"></td>
@@ -168,6 +170,13 @@
                                                 <td th:text = "${user.getAadharNo()}"></td>
                                                 <td th:text = "${user.getAddress()}"></td>
                                                 <td th:text = "${user.getMobileNo()}"></td>
+                                                <td th:if="${!isAssigned}" ><a th:href="@{/select_candidate(jobId=${user.getJobId()},aadharNo=${user.getAadharNo()})}"><button type="submit" class="btn btn-primary btn-sm">
+            		                                <i class="fa fa-eye" aria-hidden="true"></i> Select Candidate
+			                                        </button></a></td>
+			                                   <div th:if="${isAssigned}">
+			                                  <td th:if=" ${user.getAadharNo()}  ==  ${assignedTo} " >Selected</td>
+    										<td th:unless=" ${user.getAadharNo()} == ${assignedTo} ">Not Selected</td>
+    										</div>
                                             <tr>
                                         </tbody>
                                     </table>

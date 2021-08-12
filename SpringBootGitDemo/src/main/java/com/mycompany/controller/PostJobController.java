@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.entity.AllPostedJobDetails;
+import com.mycompany.entity.AppliedUserDetails;
 import com.mycompany.entity.JobDetails;
 import com.mycompany.entity.PostJobForm;
 import com.mycompany.service.CategoryService;
@@ -183,9 +184,39 @@ public class PostJobController {
 	@GetMapping("/job_applied_list")
 	public String job_applied_list(@RequestParam int jobId,Model m) {
 		System.out.println("-------------------------- job applied list "+jobId+"-----------------------------------");
-		System.out.println(postJobService.getDetailsOfAllAppliers(jobId));
-		m.addAttribute("userDetails",postJobService.getDetailsOfAllAppliers(jobId));
+		
+		List<AppliedUserDetails> userDetails=postJobService.getDetailsOfAllAppliers(jobId);
+		
+		
+		if(userDetails.isEmpty())
+			m.addAttribute("isEmpty","true");
+		else 
+		{
+			System.out.println("Job Id "+jobId+" Assigned to "+postJobService.getSelectedWorkerAadharNo(jobId));
+			String assignedTo=postJobService.getSelectedWorkerAadharNo(jobId);
+			if(assignedTo==null)
+				m.addAttribute("isAssigned", "false");
+			else {
+				m.addAttribute("isAssigned","true");
+			}
+			m.addAttribute("assignedTo",assignedTo);
+				
+			
+			m.addAttribute("userDetails",userDetails);
+			m.addAttribute("isEmpty","false");
+		}
 		return "job_applied_list";
+	}
+	//select_candidate?jobId=1&aadharNo=111122223333
+			
+	@GetMapping("/select_candidate")
+	public String select_candidate(@RequestParam int jobId,@RequestParam String aadharNo,Model m) {
+		System.out.println("-------------------------- select candidate "+jobId+" aadharNo "+aadharNo+"-----------------------------------");
+		
+		
+			
+		int result=postJobService.assignJobToAadharNo(jobId, aadharNo);
+		return "redirect:/job_applied_list?jobId="+jobId ;
 	}
 }
 	
